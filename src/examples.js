@@ -5,7 +5,7 @@ const examples = [
       {
         id: "emptyTemplate",
         title: "Empty Template",
-        userCode: `architecture a = {\r\n    block Encoder: [\r\n        layout: horizontal,\r\n        nodes: [\r\n            n0 = type: rect label.text: \"HELLO\" color: \"red\",\r\n            n1 = type: rect label.text: \"HELLO\" color: \"yellow\" annotation.top: \"text\",\r\n            n2 = type: rect label.text: \"HELLO\" color: \"red\",\r\n            n3 = type: rect label.text: \"HELLO\" color: \"red\" label.fontColor: \"blue\",\r\n            n4 = type: rect label.text: \"HELLO\" color: \"red\"\r\n        ],\r\n        edges: [\r\n            e0 = n0.right -> n1.left bidirectional: true,\r\n            e1 = n1.right -> n2.left,\r\n            e2 = n2.right -> n3.left arrowheads: 0,\r\n            e3 = n3.right -> n4.left\r\n        ],\r\n        groups: [\r\n            row0 = members: [n0, n1, n2] gap: 30 color: \"gray\" colorBoxAdjustments: (0, 0, 0, 0),\r\n            row1 = members: [row0, n3, n4] gap: 30 color: \"lightgray\" colorBoxAdjustments: (2, 2, 2, 2)\r\n        ]\r\n    ]\r\n\r\n}\r\npage\r\nshow a\r\n`,
+        userCode: ``,
       },
     ],
   },
@@ -268,8 +268,33 @@ show randomTextToo (1, 0)
       },
 
       {
-        id: "neuralNetworkExample",
+        id: "neuralNetworkExampleTestEnv",
         title: "Example - MLP Neural-Network",
+        userCode: `neuralnetwork nn = {
+	layers: ["input layer", "hidden layer 1", "hidden layer 2", "output layer"]
+	neurons: [[null, null, null], [null, null, null, null], [null, null, null, null], [null]]
+	layerColors: ["#E4DCBD", "#C8E3F5", "#CEE7B2", "#E6C6C0"]
+    neuronColors: [["blue"]]
+    showBias: true
+    showLabels: true
+    labelPosition: bottom
+    showWeights: true
+    showArrowheads: true
+    edgeWidth: 0.3
+    edgeColor: "red"
+    layerSpacing: 125
+    neuronSpacing: 125
+    layerStrokes: ["#666666", "#666666", "#666666", "#666666"]
+
+}
+page
+show nn
+`,
+      },
+
+      {
+        id: "neuralNetworkExample",
+        title: "Example - MLP Neural-Network with Methods",
         userCode: `neuralnetwork nn = {
 	layers: ["layer1", "hidden", "output"]
 	neurons: [["null", "x1"], ["x2", "x3"], ["x4", "x5"]]
@@ -325,196 +350,6 @@ nn.setNeurons([["x1", "x2"], [null, "x3"], ["x4", "x3x"]])
 
 page
 nn.setNeurons([["a", "b", "c"], ["d"], ["e", "f"]])
-
-`,
-      },
-
-      {
-        id: "neuralNetworkExampleTestEnv",
-        title: "Example - MLP Neural-Network Without Methods",
-        userCode: `neuralnetwork nn = {
-	layers: ["input layer", "hidden layer 1", "hidden layer 2", "output layer"]
-	neurons: [[null, null, null], [null, null, null, null], [null, null, null, null], [null]]
-	layerColors: ["#E4DCBD", "#C8E3F5", "#CEE7B2", "#E6C6C0"]
-    neuronColors: [["blue"]]
-    showBias: true
-    showLabels: true
-    labelPosition: bottom
-    showWeights: true
-    showArrowheads: true
-    edgeWidth: 0.3
-    edgeColor: "red"
-    layerSpacing: 125
-    neuronSpacing: 125
-    layerStrokes: ["#666666", "#666666", "#666666", "#666666"]
-
-}
-page
-show nn
-`,
-      },
-
-      {
-        id: "blockExample12",
-        title: "Example - CNN",
-        userCode: `architecture a = {
-  title: "Hello",
-  block Encoder: [
-    layout: horizontal,
-    gap: 16,
-    shape: rounded,
-    annotation.top: "hello",
-
-    nodes: [
-      in0 = type: text label.text: "Input Image" opLabel.text: "opLabel.text"  opLabel.subtext: "opLabel.subtext" label.fontColor: "yellow",
-      s0 = type: stacked shape: 8x128x128 kernelSize: 10x10 color: "blue",
-      conv1 = type: rect label.text: "Conv1" label.orientation: (vertical,right) subLabel.text: "7x7 stride=2, 64ch" opLabel.text: "opLabel.text" opLabel.subtext: "opLabel.text SUBTEXT" annotation.top: "TOP" size: (180,70) shape: rounded stroke.color: "black",
-      bn1 = type: rect label.text: "BatchNorm" subLabel.text: "normalize features" stroke.color: "black",
-      relu1 = type: rect label.text: "ReLU" subLabel.text: "activation" opLabel.text: "opLabel.text" size: (110,40) stroke.color: "black",
-      s1 = type: stacked shape: 8x128x128 kernelSize: 10x10 label.text: "8@128x128" subLabel.text: "subLabel.text" subLabel.fontColor: "red" subLabel.fontFamily: "math" subLabel.fontSize: 15 subLabel.fontWeight: 900 subLabel.fontStyle: italic,
-      s2 = type: stacked shape: 8x64x64 kernelSize: 16x16 label.text: "8@64x64" subLabel.text: " dsadasdad dasddasdasd dsadasdsa dsadasd ddsadasdaddd dasdsdsdsad" opLabel.text: "opLabel.text" opLabel.subtext: "opLabel.subtext" color: "red",
-      s3 = type: stacked shape: 24x48x48 label.text: "8@64x64" color: "white",
-      f1 = type: flatten shape: 24x1 label.text: "8@128x128" subLabel.text: "Hellod dsadasdad dasddasdasd dsadasdsa" opLabel.text: "opLabel.text" color: "blue",
-      fully1 = type: fullyConnected shape: [24, 12, 6, 3] outputLabels: ["label", "hello", "world"] label.text: "1x128" opLabel.text: "Dense" color: ["blue", "black", "red", "yellow"],
-      fully2 = type: fullyConnected shape: [24, 12, 6, 3] outputLabels: ["label", "hello", "world"] label.text: "1x128" opLabel.text: "Dense" color: ["blue", "black", "red", "yellow"]
-    ],
-
-    edges: [
-      e4 = conv1.right -> bn1.left transition: flatten gap: 50 color: "blue",
-      e3 = s1.top -> s2.left transition: featureMap,
-      e0 = s2.right -> s3.left,
-      e1 = s3.right -> f1.left transition: flatten,
-      e2 = f1.top -> fully1.left transition: fullyConnected,
-      e5 = fully1.top -> fully2.left
-    ],
-
-    groups: [
-      row0 = members: [in0, s0, conv1, bn1, relu1],
-      row1 = members: [s1, s2, s3, f1, fully1] marker.type: bracket marker.position: bottom marker.text: "TESTING" marker.fontColor: "blue" marker.fontFamily: "math" marker.fontSize: 15 marker.fontWeight: 900 marker.fontStyle: italic
-    ]
-  ]
-}
-
-page
-show a
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-`,
-      },
-
-      {
-        id: "blockExample2",
-        title: "Block Playground",
-        userCode: `architecture a = {
-
-
-}
-
-page
-show a
-`,
-      },
-
-      {
-        id: "blockExampleAutocomplete2",
-        title: "Block Autocomplete TEST",
-        userCode: `architecture a = {
-    block Encoder: [
-        layout: horizontal
-        gap: 10
-        size: (200, 100)
-        color: "red"
-        stroke.color: "blue"
-        stroke.style: solid
-        stroke.width: 15
-        shape: rounded
-        fontFamily: "Arial"
-        fontSize: 14
-        fontWeight: 100
-        fontStyle: normal
-        fontColor: "red"
-        nodes: [
-            node0 = type: rect
-            node1 = type: rect
-        ]
-        edges: [
-            e0
-        ]
-      
-
-
-
-        
-        
-        
-        
-
-
-        
-
-
-
-
-        
-    ]
-    diagram: [
-        gap: 10
-        layout: horizontal
-        annotation.top: "text"
-        rotateRight: 2
-        uses: [e = Encoder]
-        connects: [
-            e.node0.top -> e.node0.top 
-        ]
-
-        
-    ]
-
-
-}
-
-page
-show a
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 `,
       },
