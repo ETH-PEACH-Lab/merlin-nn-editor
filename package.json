@@ -3,7 +3,7 @@
   "version": "6.1.0",
   "description": "",
   "private": true,
-  "homepage": "https://eth-peach-lab.github.io/intuition-vis-test/",
+  "homepage": "https://eth-peach-lab.github.io/merlin-nn-editor/",
   "engines": {
     "node": ">=18.16"
   },
