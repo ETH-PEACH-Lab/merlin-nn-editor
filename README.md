@@ -1,7 +1,7 @@
-# Merlin Editor
-Merlin Editor allows you to create diagrams using code and helps you teach computer science topics.
+# Merlin NN Editor
+Merlin NN Editor allows you to create neural network and architecture diagrams using code.
 
-To check it out, visit the [Merlin Editor editor here](https://eth-peach-lab.github.io/merlin/).
+To check it out, visit the [Merlin NN Editor editor here](https://eth-peach-lab.github.io/merlin-nn-editor/).
 
 ## Getting Started
 
@@ -13,7 +13,7 @@ To check it out, visit the [Merlin Editor editor here](https://eth-peach-lab.git
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ETH-PEACH-Lab/merlin.git
+   git clone https://github.com/ETH-PEACH-Lab/merlin-nn-editor.git
    cd merlin
    ```
 
