@@ -14,7 +14,7 @@ To check it out, visit the [Merlin NN Editor editor here](https://eth-peach-lab.
 1. Clone the repository:
    ```bash
    git clone https://github.com/ETH-PEACH-Lab/merlin-nn-editor.git
-   cd merlin
+   cd merlin-nn-editor
    ```
 
 2. Install dependencies:
